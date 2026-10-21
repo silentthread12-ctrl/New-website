@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>White House | Dinner, pool and late-night parties</title>
+    <meta
+      name="description"
+      content="White House is a restaurant with a pool. Dinner from 7 PM, parties until 3 AM. Book a table or a whole night."
+    />
+    <meta name="theme-color" content="#04202E" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <meta property="og:title" content="White House" />
+    <meta property="og:description" content="Dinner by the pool. Parties until 3 AM." />
+    <meta property="og:type" content="website" />
+    <noscript>
+      <style>
+        .hero__title { visibility: visible !important; }
+      </style>
+    </noscript>
+    <script type="module" src="/src/main.js"></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <canvas id="water" aria-hidden="true"></canvas>
+
+    <div class="cursor" aria-hidden="true">
+      <span class="cursor__ring"></span>
+      <span class="cursor__dot"></span>
+    </div>
+    <div class="level" aria-hidden="true"><span class="level__fill"></span></div>
+
+    <header class="nav">
+      <a class="nav__brand" href="#top">White House</a>
+      <nav class="nav__links" aria-label="Main">
+        <a href="#night">The night</a>
+        <a href="#pool">Pool</a>
+        <a href="#menu">Menu</a>
+        <a class="nav__cta" href="#book">Book a night</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <!-- HERO -->
+      <section class="hero" id="top" data-water>
+        <div class="hero__inner">
+          <h1 class="hero__title" aria-label="White House">
+            <span class="line" aria-hidden="true"><span class="line__inner">White</span></span>
+            <span class="line" aria-hidden="true"><span class="line__inner">House</span></span>
+          </h1>
+          <div class="hero__foot">
+            <div class="hero__copy">
+              <p class="hero__sub">Dinner by the pool. Parties until 3 a.m.</p>
+              <div class="hero__cta">
+                <a class="btn btn--solid" href="#book" data-magnetic>Book a night</a>
+                <a class="btn btn--text" href="#menu">See the menu</a>
+              </div>
+            </div>
+            <p class="hero__hint">
+              <span class="hint--fine">Move across the water.</span>
+              <span class="hint--touch">Touch the water.</span>
+              <span class="hint__scroll">Scroll to follow the night.</span>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- THE HOUSE -->
+      <section class="house on-light" id="house" aria-labelledby="house-title">
+        <div class="house__grid">
+          <h2 class="house__text" id="house-title">
+            White House is a restaurant first. The kitchen opens at seven and cooks until the last
+            guest leaves. Around ten the pool lights come up, the DJ starts, and dinner turns into
+            the party.
+          </h2>
+          <svg class="villa" viewBox="0 0 400 300" fill="none" aria-hidden="true">
+            <path data-draw d="M10 250H390" />
+            <path data-draw d="M60 250V120H250V250" />
+            <path data-draw d="M50 120H260" />
+            <path data-draw d="M90 120V80H220V120" />
+            <path data-draw d="M82 150H122V195H82Z" />
+            <path data-draw d="M190 150H230V195H190Z" />
+            <path data-draw d="M110 95H140V112H110Z" />
+            <path data-draw d="M170 95H200V112H170Z" />
+            <path data-draw d="M140 250V190H175V250" />
+            <path data-draw d="M272 250V268Q272 280 286 280H364Q378 280 378 268V250" />
+            <path data-draw d="M288 264Q298 258 308 264T328 264T348 264T368 264" />
+            <circle data-draw cx="330" cy="70" r="22" />
+            <path data-draw d="M60 118Q120 146 180 124T250 118" />
+          </svg>
+        </div>
+      </section>
+
+      <!-- THE NIGHT -->
+      <section class="night" id="night" aria-labelledby="night-title">
+        <div class="night__sky" aria-hidden="true">
+          <div class="stars"></div>
+          <div class="sun"></div>
+          <div class="moon"></div>
+        </div>
+        <div class="night__track">
+          <article class="scene scene--intro">
+            <h2 class="scene__heading" id="night-title">One night at White House.</h2>
+            <p class="scene__body">
+              Scroll through a normal night, from the first plate to last call. The sky changes.
+              So does the room.
+            </p>
+          </article>
+          <article class="scene" data-time="19">
+            <h3 class="scene__title">Dinner on the terrace</h3>
+            <p class="scene__body">
+              Grill, small plates and the first drinks while the sky goes dark over the water.
+            </p>
+          </article>
+          <article class="scene" data-time="21">
+            <h3 class="scene__title">Pool lights on</h3>
+            <p class="scene__body">
+              The water turns turquoise. Swim before the music starts or take a table beside it.
+            </p>
+          </article>
+          <article class="scene" data-time="23">
+            <h3 class="scene__title">DJ and dance floor</h3>
+            <p class="scene__body">
+              Sets run through the night. Your table stays yours until you leave.
+            </p>
+          </article>
+          <article class="scene" data-time="25">
+            <h3 class="scene__title">The late kitchen</h3>
+            <p class="scene__body">
+              Hot food keeps coming: noodles, wings, fries and anything else that helps.
+            </p>
+          </article>
+          <article class="scene" data-time="27">
+            <h3 class="scene__title">Last call</h3>
+            <p class="scene__body">
+              One final round, one last song, then the lights come up and everyone heads home.
+            </p>
+          </article>
+        </div>
+        <div class="night__clock" aria-hidden="true">
+          <span class="night__time">5:00 PM</span>
+        </div>
+        <div class="night__progress" aria-hidden="true"><span></span></div>
+      </section>
+
+      <!-- THE POOL -->
+      <section class="pool" id="pool" data-water aria-labelledby="pool-title">
+        <div class="pool__deck" aria-hidden="true"></div>
+        <div class="pool__copy">
+          <h2 class="pool__title" id="pool-title">
+            Swim before the music starts. Stay by the water when it does.
+          </h2>
+          <a class="btn btn--solid pool__cta" href="#book" data-magnetic>Book a poolside table</a>
+        </div>
+      </section>
+
+      <!-- MENU -->
+      <section class="menu" id="menu" aria-labelledby="menu-title">
+        <div class="menu__head">
+          <h2 class="menu__title" id="menu-title">From the grill to the late kitchen.</h2>
+          <p class="menu__note">
+            The menu changes with the season. Ask your server for today&rsquo;s list.
+          </p>
+        </div>
+
+        <div class="menu__group">
+          <div class="menu__label">
+            <h3>From the grill</h3>
+            <p>Over charcoal, served with flatbread.</p>
+          </div>
+          <ul class="dishes">
+            <li class="dish">
+              <h4 class="dish__name">Charcoal chicken</h4>
+              <p class="dish__desc">Lime, chili salt, grilled onions</p>
+            </li>
+            <li class="dish">
+              <h4 class="dish__name">Lamb chops</h4>
+              <p class="dish__desc">Garlic, mint, warm flatbread</p>
+            </li>
+            <li class="dish">
+              <h4 class="dish__name">Whole grilled fish</h4>
+              <p class="dish__desc">Lemon, herbs, charred greens</p>
+            </li>
+            <li class="dish">
+              <h4 class="dish__name">Paneer tikka</h4>
+              <p class="dish__desc">Smoked in the tandoor, mint chutney</p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="menu__group">
+          <div class="menu__label">
+            <h3>Small plates</h3>
+            <p>Made for sharing at the table.</p>
+          </div>
+          <ul class="dishes">
+            <li class="dish">
+              <h4 class="dish__name">Hummus</h4>
+              <p class="dish__desc">Olive oil, paprika, warm flatbread</p>
+            </li>
+            <li class="dish">
+              <h4 class="dish__name">Crispy calamari</h4>
+              <p class="dish__desc">Lemon aioli</p>
+            </li>
+            <li class="dish">
+              <h4 class="dish__name">Corn ribs</h4>
+              <p class="dish__desc">Chili butter, lime</p>
+            </li>
+            <li class="dish">
+              <h4 class="dish__name">Mushroom skewers</h4>
+              <p class="dish__desc">Garlic, parsley, smoked salt</p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="menu__group">
+          <div class="menu__label">
+            <h3>Late kitchen</h3>
+            <p>Served from 1 AM until close.</p>
+          </div>
+          <ul class="dishes">
+            <li class="dish">
+              <h4 class="dish__name">Chili garlic noodles</h4>
+              <p class="dish__desc">Spring onion, fried egg</p>
+            </li>
+            <li class="dish">
+              <h4 class="dish__name">Hot wings</h4>
+              <p class="dish__desc">Honey chili glaze, cooling dip</p>
+            </li>
+            <li class="dish">
+              <h4 class="dish__name">Cheese fries</h4>
+              <p class="dish__desc">Melted cheese, pickled jalape&ntilde;o</p>
+            </li>
+            <li class="dish">
+              <h4 class="dish__name">Egg fried rice</h4>
+              <p class="dish__desc">Vegetables, soy, sesame</p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="menu__group">
+          <div class="menu__label">
+            <h3>Drinks</h3>
+            <p>Every cocktail also comes without alcohol.</p>
+          </div>
+          <ul class="dishes">
+            <li class="dish">
+              <h4 class="dish__name">Pool Light</h4>
+              <p class="dish__desc">Gin, cucumber, mint, tonic</p>
+            </li>
+            <li class="dish">
+              <h4 class="dish__name">White House Spritz</h4>
+              <p class="dish__desc">Sparkling wine, orange, soda</p>
+            </li>
+            <li class="dish">
+              <h4 class="dish__name">Midnight Mule</h4>
+              <p class="dish__desc">Vodka, ginger beer, lime</p>
+            </li>
+            <li class="dish">
+              <h4 class="dish__name">Mango Cooler</h4>
+              <p class="dish__desc">Mango, lime, soda</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- BOOK -->
+      <section class="book on-light" id="book" aria-labelledby="book-title">
+        <div class="book__grid">
+          <h2 class="book__title" id="book-title">
+            <span class="line"><span class="line__inner">Your party,</span></span>
+            <span class="line"><span class="line__inner">our pool.</span></span>
+          </h2>
+          <div class="book__side">
+            <ul class="parties">
+              <li class="party">
+                <h3 class="party__name">Birthday nights</h3>
+                <p class="party__desc">Tables by the pool and a menu built around your group.</p>
+              </li>
+              <li class="party">
+                <h3 class="party__name">Private pool parties</h3>
+                <p class="party__desc">The whole terrace and pool for your guests.</p>
+              </li>
+              <li class="party">
+                <h3 class="party__name">Company evenings</h3>
+                <p class="party__desc">Dinner, drinks and the pool for your team.</p>
+              </li>
+              <li class="party">
+                <h3 class="party__name">Open late-night parties</h3>
+                <p class="party__desc">Our regular nights. Walk in, eat, stay for the music.</p>
+              </li>
+            </ul>
+            <p class="book__lead">
+              Tell us the date, how many people are coming and what you are celebrating. We will
+              hold the tables.
+            </p>
+            <div class="book__actions">
+              <a class="btn btn--ink" data-contact="whatsapp" data-magnetic hidden>Message on WhatsApp</a>
+              <a class="btn btn--ink" data-contact="call" data-magnetic hidden>Call us</a>
+              <a class="btn btn--outline" data-contact="email" data-magnetic hidden>Email us</a>
+              <p class="book__soon" data-contact-empty>Booking details are coming soon.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee__row">
+          <div class="marquee__group">
+            <span>White House</span><i class="sep"></i><span class="outline">Dinner</span><i class="sep"></i
+            ><span>Pool</span><i class="sep"></i><span class="outline">After dark</span><i class="sep"></i>
+          </div>
+          <div class="marquee__group">
+            <span>White House</span><i class="sep"></i><span class="outline">Dinner</span><i class="sep"></i
+            ><span>Pool</span><i class="sep"></i><span class="outline">After dark</span><i class="sep"></i>
+          </div>
+        </div>
+      </div>
+      <div class="footer__info">
+        <p class="footer__hours" data-config="hours"></p>
+        <p class="footer__address" data-config="address" hidden></p>
+        <p class="footer__contact">
+          <a data-contact="call" hidden></a>
+          <a data-contact="email" hidden></a>
+        </p>
+        <p class="footer__fine">&copy; <span data-year></span> White House. Please swim and celebrate responsibly.</p>
+      </div>
+    </footer>
+  </body>
+</html>
