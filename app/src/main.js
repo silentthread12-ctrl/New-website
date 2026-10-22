@@ -11,6 +11,8 @@ import './styles.css';
 import { CONFIG } from './config.js';
 import { createWater } from './water.js';
 import { initCursor, initMagnetic } from './cursor.js';
+import { initMenu } from './menuUI.js';
+import { initBooking } from './booking.js';
 
 gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin);
 
@@ -46,12 +48,24 @@ function bindContact() {
     el.hidden = false;
     any = true;
   });
-  const hoursEl = $('[data-config="hours"]');
-  if (hoursEl && hours) hoursEl.textContent = hours;
-  const addrEl = $('[data-config="address"]');
-  if (addrEl && address) {
-    addrEl.textContent = address;
-    addrEl.hidden = false;
+  $$('[data-config="hours"]').forEach((el) => {
+    if (hours) el.textContent = hours;
+  });
+  $$('[data-config="address"]').forEach((el) => {
+    if (!address) return;
+    el.textContent = address;
+    el.hidden = false;
+  });
+  const { lat, lng } = CONFIG;
+  if (lat && lng) {
+    $$('[data-directions]').forEach((el) => {
+      el.href = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
+    });
+    $$('[data-map]').forEach((el) => {
+      el.src = `https://www.google.com/maps?q=${lat},${lng}&z=17&output=embed`;
+    });
+  } else {
+    $$('.visit__map, [data-directions]').forEach((el) => (el.hidden = true));
   }
   const soon = $('[data-contact-empty]');
   if (soon) soon.hidden = any;
@@ -85,6 +99,8 @@ function revealLines(root, trigger = root, start = 'top 85%') {
 /* ---------- Boot ---------- */
 async function boot() {
   bindContact();
+  initMenu();
+  initBooking();
   initCursor();
   initMagnetic();
 
@@ -164,15 +180,35 @@ async function boot() {
   };
   if (lenis) lenis.on('scroll', ({ velocity }) => onScroll(velocity));
 
-  /* ---------- Nav colour on light sections ---------- */
-  $$('.on-light').forEach((section) => {
-    ScrollTrigger.create({
-      trigger: section,
-      start: 'top 48px',
-      end: 'bottom 48px',
-      onToggle: (self) => document.body.classList.toggle('nav-light', self.isActive),
+  /* ---------- Nav colour and floating button, derived from where things are on screen ---------- */
+  const lightSections = $$('.on-light');
+  const bookEl = $('#book');
+  const poolState = { active: false, progress: 0 };
+  function syncChrome() {
+    const line = 48;
+    let light = lightSections.some((el) => {
+      const r = el.getBoundingClientRect();
+      return r.top <= line && r.bottom > line;
     });
-  });
+    // While the pool deck is still closed, the nav sits on the light deck.
+    if (poolState.active && poolState.progress < 0.45) light = true;
+    document.body.classList.toggle('nav-light', light);
+    const r = bookEl.getBoundingClientRect();
+    document.body.classList.toggle('in-book', r.top < window.innerHeight * 0.8 && r.bottom > 0);
+  }
+  let chromeQueued = false;
+  const queueChrome = () => {
+    if (chromeQueued) return;
+    chromeQueued = true;
+    requestAnimationFrame(() => {
+      chromeQueued = false;
+      syncChrome();
+    });
+  };
+  window.addEventListener('scroll', queueChrome, { passive: true });
+  window.addEventListener('resize', queueChrome);
+  ScrollTrigger.addEventListener('refresh', queueChrome);
+  syncChrome();
 
   /* ---------- Scroll level (pool filling up) ---------- */
   gsap.to('.level__fill', {
@@ -279,10 +315,14 @@ async function boot() {
         scrub: 0.7,
         start: 'top top',
         end: '+=110%',
-        // The nav sits on the light deck at first, then on dark water.
-        onUpdate: (self) => document.body.classList.toggle('nav-light', self.progress < 0.45),
+        onUpdate: (self) => {
+          poolState.active = self.isActive;
+          poolState.progress = self.progress;
+          queueChrome();
+        },
         onToggle: (self) => {
-          if (!self.isActive) document.body.classList.remove('nav-light');
+          poolState.active = self.isActive;
+          queueChrome();
         },
       },
     });
@@ -309,16 +349,6 @@ async function boot() {
           scrollTrigger: { trigger: '.menu__title', start: 'top 85%', once: true },
         });
       },
-    });
-    $$('.menu__group').forEach((group) => {
-      gsap.from($$('.dish', group), {
-        opacity: 0,
-        y: 28,
-        duration: 0.9,
-        ease: 'power3.out',
-        stagger: 0.08,
-        scrollTrigger: { trigger: group, start: 'top 80%', once: true },
-      });
     });
 
     /* Book */
@@ -359,6 +389,11 @@ async function boot() {
     $$('.scene').forEach((s) => s.classList.add('is-active'));
   });
 
+  let refreshTimer = 0;
+  window.addEventListener('layout-change', () => {
+    clearTimeout(refreshTimer);
+    refreshTimer = setTimeout(() => ScrollTrigger.refresh(), 150);
+  });
   if (!reduced) {
     window.addEventListener('load', () => ScrollTrigger.refresh());
   }

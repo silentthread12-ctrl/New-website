@@ -30,6 +30,7 @@
       <span class="cursor__dot"></span>
     </div>
     <div class="level" aria-hidden="true"><span class="level__fill"></span></div>
+    <a class="order-chip" href="#book" hidden>Pre-order <b data-chip-count>0</b> &middot; Book a table</a>
 
     <header class="nav">
       <a class="nav__brand" href="#top">White House</a>
@@ -37,6 +38,7 @@
         <a href="#night">The night</a>
         <a href="#pool">Pool</a>
         <a href="#menu">Menu</a>
+        <a href="#visit">Find us</a>
         <a class="nav__cta" href="#book">Book a night</a>
       </nav>
     </header>
@@ -151,117 +153,22 @@
           <h2 class="pool__title" id="pool-title">
             Swim before the music starts. Stay by the water when it does.
           </h2>
-          <a class="btn btn--solid pool__cta" href="#book" data-magnetic>Book a poolside table</a>
+          <a class="btn btn--solid pool__cta" href="#book" data-area="Poolside table" data-magnetic>Book a poolside table</a>
         </div>
       </section>
 
       <!-- MENU -->
       <section class="menu" id="menu" aria-labelledby="menu-title">
         <div class="menu__head">
-          <h2 class="menu__title" id="menu-title">From the grill to the late kitchen.</h2>
+          <h2 class="menu__title" id="menu-title">Pick your dishes before you arrive.</h2>
           <p class="menu__note">
-            The menu changes with the season. Ask your server for today&rsquo;s list.
+            Add dishes to your booking request and we will confirm everything by reply. Dishes and
+            prices change, so ask your server for today&rsquo;s list.
           </p>
         </div>
-
-        <div class="menu__group">
-          <div class="menu__label">
-            <h3>From the grill</h3>
-            <p>Over charcoal, served with flatbread.</p>
-          </div>
-          <ul class="dishes">
-            <li class="dish">
-              <h4 class="dish__name">Charcoal chicken</h4>
-              <p class="dish__desc">Lime, chili salt, grilled onions</p>
-            </li>
-            <li class="dish">
-              <h4 class="dish__name">Lamb chops</h4>
-              <p class="dish__desc">Garlic, mint, warm flatbread</p>
-            </li>
-            <li class="dish">
-              <h4 class="dish__name">Whole grilled fish</h4>
-              <p class="dish__desc">Lemon, herbs, charred greens</p>
-            </li>
-            <li class="dish">
-              <h4 class="dish__name">Paneer tikka</h4>
-              <p class="dish__desc">Smoked in the tandoor, mint chutney</p>
-            </li>
-          </ul>
-        </div>
-
-        <div class="menu__group">
-          <div class="menu__label">
-            <h3>Small plates</h3>
-            <p>Made for sharing at the table.</p>
-          </div>
-          <ul class="dishes">
-            <li class="dish">
-              <h4 class="dish__name">Hummus</h4>
-              <p class="dish__desc">Olive oil, paprika, warm flatbread</p>
-            </li>
-            <li class="dish">
-              <h4 class="dish__name">Crispy calamari</h4>
-              <p class="dish__desc">Lemon aioli</p>
-            </li>
-            <li class="dish">
-              <h4 class="dish__name">Corn ribs</h4>
-              <p class="dish__desc">Chili butter, lime</p>
-            </li>
-            <li class="dish">
-              <h4 class="dish__name">Mushroom skewers</h4>
-              <p class="dish__desc">Garlic, parsley, smoked salt</p>
-            </li>
-          </ul>
-        </div>
-
-        <div class="menu__group">
-          <div class="menu__label">
-            <h3>Late kitchen</h3>
-            <p>Served from 1 AM until close.</p>
-          </div>
-          <ul class="dishes">
-            <li class="dish">
-              <h4 class="dish__name">Chili garlic noodles</h4>
-              <p class="dish__desc">Spring onion, fried egg</p>
-            </li>
-            <li class="dish">
-              <h4 class="dish__name">Hot wings</h4>
-              <p class="dish__desc">Honey chili glaze, cooling dip</p>
-            </li>
-            <li class="dish">
-              <h4 class="dish__name">Cheese fries</h4>
-              <p class="dish__desc">Melted cheese, pickled jalape&ntilde;o</p>
-            </li>
-            <li class="dish">
-              <h4 class="dish__name">Egg fried rice</h4>
-              <p class="dish__desc">Vegetables, soy, sesame</p>
-            </li>
-          </ul>
-        </div>
-
-        <div class="menu__group">
-          <div class="menu__label">
-            <h3>Drinks</h3>
-            <p>Every cocktail also comes without alcohol.</p>
-          </div>
-          <ul class="dishes">
-            <li class="dish">
-              <h4 class="dish__name">Pool Light</h4>
-              <p class="dish__desc">Gin, cucumber, mint, tonic</p>
-            </li>
-            <li class="dish">
-              <h4 class="dish__name">White House Spritz</h4>
-              <p class="dish__desc">Sparkling wine, orange, soda</p>
-            </li>
-            <li class="dish">
-              <h4 class="dish__name">Midnight Mule</h4>
-              <p class="dish__desc">Vodka, ginger beer, lime</p>
-            </li>
-            <li class="dish">
-              <h4 class="dish__name">Mango Cooler</h4>
-              <p class="dish__desc">Mango, lime, soda</p>
-            </li>
-          </ul>
+        <div class="menu__tabs" role="tablist" aria-label="Menu categories" data-menu-tabs></div>
+        <div class="menu__panel" role="tabpanel" data-menu-panel tabindex="0">
+          <noscript><p class="menu__intro">Turn on JavaScript to see the menu.</p></noscript>
         </div>
       </section>
 
@@ -272,6 +179,68 @@
             <span class="line"><span class="line__inner">Your party,</span></span>
             <span class="line"><span class="line__inner">our pool.</span></span>
           </h2>
+
+          <form class="booking" id="booking-form" novalidate aria-labelledby="booking-heading">
+            <h3 class="booking__heading" id="booking-heading">Book a table</h3>
+            <p class="booking__intro">
+              Send a request and we confirm by reply. Your table is held once we confirm it.
+            </p>
+
+            <div class="booking__fields" data-fields>
+              <div class="field">
+                <label for="b-name">Your name</label>
+                <input id="b-name" name="name" type="text" autocomplete="name" required aria-describedby="b-name-err" />
+                <p class="field__error" id="b-name-err" data-err="name"></p>
+              </div>
+              <div class="field">
+                <label for="b-phone">Phone number</label>
+                <input id="b-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required aria-describedby="b-phone-err" />
+                <p class="field__error" id="b-phone-err" data-err="phone"></p>
+              </div>
+              <div class="field">
+                <label for="b-date">Date</label>
+                <input id="b-date" name="date" type="date" required aria-describedby="b-date-err" />
+                <p class="field__error" id="b-date-err" data-err="date"></p>
+              </div>
+              <div class="field">
+                <label for="b-time">Arrival time</label>
+                <input id="b-time" name="time" type="time" required aria-describedby="b-time-err" />
+                <p class="field__error" id="b-time-err" data-err="time"></p>
+              </div>
+              <div class="field">
+                <label for="b-guests">Number of people</label>
+                <input id="b-guests" name="guests" type="number" inputmode="numeric" min="1" max="500" value="2" required aria-describedby="b-guests-err" />
+                <p class="field__error" id="b-guests-err" data-err="guests"></p>
+              </div>
+              <div class="field">
+                <label for="b-area">Table</label>
+                <select id="b-area" name="area"></select>
+              </div>
+              <div class="field field--wide">
+                <label for="b-occasion">Occasion</label>
+                <select id="b-occasion" name="occasion"></select>
+              </div>
+              <div class="field field--wide">
+                <label for="b-notes">Anything we should know? (optional)</label>
+                <textarea id="b-notes" name="notes" rows="3"></textarea>
+              </div>
+
+              <div class="preorder">
+                <h4 class="preorder__title">Your pre-order</h4>
+                <ul class="preorder__list" data-preorder-list></ul>
+                <p class="preorder__empty" data-preorder-empty>
+                  Nothing added yet. Add dishes from the <a href="#menu">menu</a>, or order at the table.
+                </p>
+              </div>
+
+              <div class="booking__actions">
+                <button class="btn btn--ink booking__submit" type="submit" data-submit>Send booking on WhatsApp</button>
+              </div>
+            </div>
+
+            <div class="booking__done" data-done hidden tabindex="-1"></div>
+          </form>
+
           <div class="book__side">
             <ul class="parties">
               <li class="party">
@@ -292,15 +261,37 @@
               </li>
             </ul>
             <p class="book__lead">
-              Tell us the date, how many people are coming and what you are celebrating. We will
-              hold the tables.
+              Booking a big party or the whole pool? Call or message us and we will talk it through.
             </p>
             <div class="book__actions">
               <a class="btn btn--ink" data-contact="whatsapp" data-magnetic hidden>Message on WhatsApp</a>
-              <a class="btn btn--ink" data-contact="call" data-magnetic hidden>Call us</a>
+              <a class="btn btn--outline" data-contact="call" data-magnetic hidden>Call us</a>
               <a class="btn btn--outline" data-contact="email" data-magnetic hidden>Email us</a>
               <p class="book__soon" data-contact-empty>Booking details are coming soon.</p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VISIT -->
+      <section class="visit" id="visit" aria-labelledby="visit-title">
+        <div class="visit__grid">
+          <div class="visit__info">
+            <h2 class="visit__title" id="visit-title">Come find us.</h2>
+            <p class="visit__address" data-config="address"></p>
+            <p class="visit__hours" data-config="hours"></p>
+            <div class="visit__actions">
+              <a class="btn btn--solid" data-directions target="_blank" rel="noopener" data-magnetic>Get directions</a>
+              <a class="btn btn--text" data-contact="call" hidden>Call us</a>
+            </div>
+          </div>
+          <div class="visit__map">
+            <iframe
+              data-map
+              title="Map showing White House Restaurant and Party Palace"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
           </div>
         </div>
       </section>

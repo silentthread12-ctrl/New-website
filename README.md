@@ -14,11 +14,19 @@ Built with Vite, GSAP (ScrollTrigger, SplitText, DrawSVG), Lenis smooth scrollin
 2. Set Source to "Deploy from a branch", branch `main`, folder `/ (root)`.
 3. Save. The site appears at `https://<your-username>.github.io/<repo-name>/` after about a minute.
 
-## Add your real details
+## Change your details
 
-Open `app/src/config.js` and fill in your phone, WhatsApp number, email and address.
-Buttons and footer links appear automatically for every value you fill in.
-The menu, hours and party types in `app/index.html` are placeholders. Replace them with your real ones.
+- **Phone, WhatsApp, address, hours, map position, table types:** edit `app/src/config.js`.
+- **Menu (dishes, descriptions, prices):** edit `app/src/menu.js`. Add `price: 350` to an item and it shows as "NPR 350".
+- Booking requests are sent to the WhatsApp number in `config.js`. Make sure that number is on WhatsApp.
+
+The dishes in `menu.js` (apart from the Nanglo set) are samples. Replace them with your real menu.
+
+## How booking works
+
+Guests pick a date, time, number of people and table, optionally add dishes from the menu, and press send.
+WhatsApp opens with all the details filled in. You confirm the table by replying.
+This site cannot check availability or store bookings by itself, because it has no server.
 
 ## Make changes
 
